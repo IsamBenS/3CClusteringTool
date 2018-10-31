@@ -869,6 +869,7 @@ server <- function(input, output, session)
     {
         if(length(current.project$fcs.files)>0)
         {
+            run.notif <- showNotification("RUNNING CLUSTERINGS - please wait", duration = NULL)
             #DOWNSAMPLE FILES============================================================================================
             if(input$t_2_1_dwnsmpl)
             {
@@ -1142,6 +1143,7 @@ server <- function(input, output, session)
                     )
                 }
             }
+            removeNotification(run.notif)
         }
     })
     
@@ -1399,6 +1401,7 @@ server <- function(input, output, session)
         },
         content = function(file)
         {
+            download.notif <- showNotification("ZIPPING FILES - this may take a while", duration = NULL)
             f.names <- c()
             if(length(current.project$fcs.files)>0)
             {
@@ -1417,6 +1420,7 @@ server <- function(input, output, session)
             }
             zip(file,f.names)
             file.remove(f.names)
+            removeNotification(download.notif)
         }
     )
     

@@ -1,6 +1,7 @@
-library(stats)
-
 fct.parameters <- list("centers"=c(0,10,500,100),"iterations"=c(0,100,1000,100), "nstart"=c(0,1,50,6))
+fct.parameters.description <- list("Number of clusters.",
+                        "Number of iterations to run to compute the centers of the clusters.",
+                        "Number of sets of points to choose. Determines how many times the algorithm should run.")
 
 BRP_BM.kmeans.execute <- function(fcs.file, params = list(50,10,1), markers_col)
 {

@@ -1,6 +1,6 @@
-library(flowCore)
-
 fct.parameters <- list("k"=c(1,10,100,10))
+fct.parameters.description <- list("Number of clusters. Effectively: cut the tree at the height corresponding to the chosen number of clusters if possible.")
+
 
 BRP_BM.hclust.execute <- function(fcs.file, params = list(10,40000), markers_col)
 {

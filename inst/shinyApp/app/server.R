@@ -30,7 +30,7 @@ server <- function(input, output, session)
     )
     
     env.var <- reactiveValues(
-        tool.wd = getwd(),
+        tool.wd = system.file("shinyApp", "app", package = "ClusteringTool"),
         activate.analysis = F,
         clustering.done = F
     )

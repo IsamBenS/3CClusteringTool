@@ -11,7 +11,7 @@ Shiny app developped to use different clustering algorithms on FCS files. The fi
 
   1. Run the following command in R/RStudio:
 ```
-install.packages(c("microbenchmark"", "shiny", "shinyjs", "shinydashboard","cluster","doSNOW"))
+install.packages(c("microbenchmark", "shiny", "shinyjs", "shinydashboard","cluster","doSNOW"))
 source("https://bioconductor.org/biocLite.R")
 biocLite("ggcyto")
 biocLite("flowCore")

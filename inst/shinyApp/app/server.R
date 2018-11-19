@@ -846,7 +846,8 @@ server <- function(input, output, session)
                             par.name <- names(clustering.algorithms$parameters[[input$t_2_1_sel[[k]]]])[p]
                             
                             updateSliderInput(session, paste0("t_2_3_",k,"_",p),
-                                              step=as.numeric(input[[paste0("t_2_3_",k,"_",p,"_step")]]))
+                                              step=as.numeric(input[[paste0("t_2_3_",k,"_",p,"_step")]]),
+                                              value=as.numeric(input[[paste0("t_2_3_",k,"_",p)]]))
                         }
                     })
                 }
@@ -861,7 +862,8 @@ server <- function(input, output, session)
         if( is.defined(input$t_2_1_dwnsmpl_rate_step) && input$t_2_1_dwnsmpl_rate_step != "" && input$t_2_1_dwnsmpl_rate_step != " ")
         {
             updateSliderInput(session, "t_2_1_dwnsmpl_rate",
-                                              step=as.numeric(input$t_2_1_dwnsmpl_rate_step))
+                              step=as.numeric(input$t_2_1_dwnsmpl_rate_step),
+                              value=as.numeric(input$t_2_1_dwnsmpl_rate))
         }
     })
 

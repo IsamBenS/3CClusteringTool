@@ -1,7 +1,7 @@
 # Clustering Tool
 Shiny app developped to use different clustering algorithms on FCS files. The files are enriched and can then be downloaded and used with the Analysis Tool.
 	 
->[User manual :](doc/Manual_clusteringtool.pdf)
+>[User manual](doc/Manual_clusteringtool.pdf)
 
 ## Requirements
   * software: R(Version 3.4.3 to 3.5), Rstudio(optional)
@@ -11,14 +11,14 @@ Shiny app developped to use different clustering algorithms on FCS files. The fi
 
   1. Run the following command in R/RStudio:
 ```
-install.packages(c("microbenchmark,, "shiny", "shinyjs", "shinydashboard","cluster","parallel","doSNOW"))
+install.packages(c("microbenchmark"", "shiny", "shinyjs", "shinydashboard","cluster","doSNOW"))
 source("https://bioconductor.org/biocLite.R")
 biocLite("ggcyto")
 biocLite("flowCore")
 biocLite("FlowSOM")
 biocLite("ncdfFlow")
 ```
-  >You may be asked to reload your environment, if so, accept.
+  >You might have to launch a new R session
   
   2. Run the next commands:
 ```

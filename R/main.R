@@ -22,6 +22,7 @@ ClusteringTool.run <- function()
     library(parallel)
     library(doSNOW)
     library(ggcyto)
+    library(SPADECiphe)
 
 
     appDir <- system.file("shinyApp", "app", package = "ClusteringTool")

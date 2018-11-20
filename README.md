@@ -5,7 +5,7 @@ Shiny app developped to use different clustering algorithms on FCS files. The fi
 
 ## Requirements
   * software: R(Version 3.4.3 to 3.5), Rstudio(optional)
-  * R packages: flowcore, microbenchmark, ncdfFlow, shiny, shinydashboard, shinyjs, doSNOW, cluster, parallel, ggcyto
+  * R packages: flowcore, microbenchmark, ncdfFlow, shiny, shinydashboard, shinyjs, doSNOW, cluster, parallel, ggcyto, SPADECiphe
   
 ## Quick installation guide
 
@@ -17,6 +17,8 @@ biocLite("ggcyto")
 biocLite("flowCore")
 biocLite("FlowSOM")
 biocLite("ncdfFlow")
+devtools::install_github("nolanlab/rclusterpp")
+devtools::install_github("isambens/spadeciphe")
 ```
   >You might have to launch a new R session
   

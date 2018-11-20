@@ -1,6 +1,6 @@
 fct.parameters <- list("xgrid"=c(0,10,100,20),"ygrid"=c(0,10,100,20))
-fct.parameters.description <- list("Number of x size of the grid (Number of clusters = xgrid * ygrid).",
-                        "Number of y size of the grid (Number of clusters = xgrid * ygrid).")
+fct.parameters.description <- list("X size of the grid (Number of clusters = xgrid * ygrid).",
+                                   "Y size of the grid (Number of clusters = xgrid * ygrid).")
 
 BRP_BM.flowSOM.execute <- function(fcs.file, params = list(10,10), markers_col)
 {

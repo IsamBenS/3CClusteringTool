@@ -1024,9 +1024,9 @@ server <- function(input, output, session)
                         
                         temp.out <- foreach(run.id=L1.2, run.parameters.values=L1.1, fcs=L2.1, fcs.name=L2.2, f.id=L2.3,
                                             .options.snow = list(progress=progress.bar.fct),
-                                            .packages=c("flowCore","microbenchmark"),
+                                            .packages=c("flowCore","microbenchmark", "SPADECiphe"),
                                             .export = c("is.defined","benchmark.method","benchmark.source.method","add.keyword.to.fcs","alg.id",
-                                                        "curr.algo","enrich.FCS", "params","tmp.input","tmp.tool.wd","tmp.algo.params", "SPADECiphe")) %dopar%
+                                                        "curr.algo","enrich.FCS", "params","tmp.input","tmp.tool.wd","tmp.algo.params")) %dopar%
                         {
                             added.keyword <- NULL
                             added.keyword.name <- NULL

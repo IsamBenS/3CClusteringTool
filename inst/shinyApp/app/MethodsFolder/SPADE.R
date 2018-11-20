@@ -9,17 +9,17 @@ fct.parameters.description <- list("Number of clusters. Effectively: cut the gen
 BRP_BM.SPADE.execute <- function(fcs.file, params = list(200,1.5,5,0.01,0.05), markers_col)
 {
     #ADD DENSITY============================================================================================================================================
-    fcs.dens <- SPADE.addDensityToFCSCIPHE(fcs.file, cols = colnames(fcs.file@exprs)[as.numeric(markers_col)], transforms = flowCore::linearTransform(), comp = F,
+    fcs.dens <- SPADECiphe::SPADE.addDensityToFCSCIPHE(fcs.file, cols = colnames(fcs.file@exprs)[as.numeric(markers_col)], transforms = flowCore::linearTransform(), comp = F,
                                            apprx_mult = as.numeric(params[[2]]), kernel_mult = as.numeric(params[[3]]))
     
     #DOWNSAMPLE=============================================================================================================================================
-    fcs.ds <- SPADE.downsampleFCSCIPHE(fcs.dens, exclude_pctile=as.numeric(params[[4]]), target_pctile = as.numeric(params[[5]]))
+    fcs.ds <- SPADECiphe::SPADE.downsampleFCSCIPHE(fcs.dens, exclude_pctile=as.numeric(params[[4]]), target_pctile = as.numeric(params[[5]]))
     
     #FCSToTree==============================================================================================================================================
-    fcs.tree <- SPADE.FCSToTreeCIPHE(fcs.ds, cols = colnames(fcs.file@exprs)[as.numeric(markers_col)], k = as.numeric(params[[1]]), transforms = flowCore::linearTransform(), comp = F)
+    fcs.tree <- SPADECiphe::SPADE.FCSToTreeCIPHE(fcs.ds, cols = colnames(fcs.file@exprs)[as.numeric(markers_col)], k = as.numeric(params[[1]]), transforms = flowCore::linearTransform(), comp = F)
     
     #UPSAMPLE===============================================================================================================================================
-    fcs.up <- SPADE.addClusterToFCSCIPHE(fcs.dens, fcs.tree[[1]], cols = colnames(fcs.file@exprs)[as.numeric(markers_col)], transforms = flowCore::linearTransform(), comp = F)
+    fcs.up <- SPADECiphe::SPADE.addClusterToFCSCIPHE(fcs.dens, fcs.tree[[1]], cols = colnames(fcs.file@exprs)[as.numeric(markers_col)], transforms = flowCore::linearTransform(), comp = F)
     
     #GENERATE FCS===========================================================================================================================================
     fcs.labels <- matrix(fcs.up@exprs[,ncol(fcs.up@exprs)],ncol=1)

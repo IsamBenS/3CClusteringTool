@@ -23,7 +23,7 @@ BRP_BM.SPADE.execute <- function(fcs.file, params = list(200,1.5,5,0.01,0.05), m
     
     #GENERATE FCS===========================================================================================================================================
     fcs.labels <- matrix(fcs.up@exprs[,ncol(fcs.up@exprs)],ncol=1)
-    colnames(fcs.labels) <- paste0("cluster_SPADE",ncol(fcs.file@exprs)+1)
+    colnames(fcs.labels) <- paste0("cluster_SPADE.",ncol(fcs.file@exprs)+1)
     
     return(fcs.labels)
 }

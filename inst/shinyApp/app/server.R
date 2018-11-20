@@ -1026,7 +1026,7 @@ server <- function(input, output, session)
                                             .options.snow = list(progress=progress.bar.fct),
                                             .packages=c("flowCore","microbenchmark"),
                                             .export = c("is.defined","benchmark.method","benchmark.source.method","add.keyword.to.fcs","alg.id",
-                                                        "curr.algo","enrich.FCS", "params","tmp.input","tmp.tool.wd","tmp.algo.params")) %dopar%
+                                                        "curr.algo","enrich.FCS", "params","tmp.input","tmp.tool.wd","tmp.algo.params", "SPADECiphe")) %dopar%
                         {
                             added.keyword <- NULL
                             added.keyword.name <- NULL

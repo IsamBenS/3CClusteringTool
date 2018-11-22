@@ -754,10 +754,6 @@ server <- function(input, output, session)
             {
                 clustering.algorithms$parameters <- list()
             }
-            if( is.null(clustering.algorithms$parameters.description) )
-            {
-                clustering.algorithms$parameters.description <- list()
-            }
 
             lapply(methods.files, function(f)
             {
@@ -765,7 +761,6 @@ server <- function(input, output, session)
 
                 clustering.algorithms$algorithms[[strsplit(f,".R", fixed = T)[[1]][1]]] <<- strsplit(f,".R", fixed = T)[[1]][1]
                 clustering.algorithms$parameters[[strsplit(f,".R", fixed = T)[[1]][1]]] <<- fct.parameters
-                clustering.algorithms$parameters.description[[strsplit(f,".R", fixed = T)[[1]][1]]] <<- fct.parameters.description
             })
         }
 
@@ -816,18 +811,12 @@ server <- function(input, output, session)
                                      (
                                          sliderInput(paste0("t_2_3_",k,"_",p),par.name,min = as.numeric(par[1]),max=as.numeric(par[3]),
                                                      step=as.numeric(par[2]),value=c(as.numeric(par[4]),as.numeric(par[4]))),
-                                         style="float:left;width:65%;margin-bottom:11vh"
+                                         style="float:left;width:80%;"
                                      ),
                                      div
                                      (
                                          textInput(paste0("t_2_3_",k,"_",p,"_step"), "Step", value=as.numeric(par[2])),
                                          style="float:left;width:10%;margin-top:2vh;margin-left:1.2vw"
-                                     ),
-                                     div
-                                     (
-                                         p(clustering.algorithms$parameters.description[[input$t_2_1_sel[[k]]]][[p]]),
-                                         style="float:left;width:20%;margin-top:2vh;margin-left:1.2vw;max-height:10vh;
-                                                overflow:auto;padding-top:2vh"
                                      )
                                  )
                         )

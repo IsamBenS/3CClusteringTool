@@ -437,9 +437,6 @@ server <- function(input, output, session)
                      {
                          if(tmp.input[[paste0("t_1_3_",f.id,"_cbox")]])
                          {
-                             print(colnames(fcs@exprs))
-                             print(fcs@description[["SPILL"]])
-                             print("=============")
                              fcs <- m.compensate(fcs)
                          }
                      }
@@ -1230,9 +1227,6 @@ server <- function(input, output, session)
                       {
                           if(tmp.input[[paste0("t_3_4_",f.id,"_cbox")]])
                           {
-                              print(colnames(fcs@exprs))
-                              print(fcs@description[["SPILL"]])
-                              print("=============")
                               fcs <- m.inv.compensate(fcs)
                           }
                       }

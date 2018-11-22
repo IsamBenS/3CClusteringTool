@@ -1,18 +1,10 @@
-Package: FCSGenerator
+Package: ClusteringTool
 Type: Package
-Title: FCS Files Generator
-Version: 0.7.0
+Title: Clustering Tool
+Version: 0.9.1
 Author: Isam Ben Soltane
-Maintainer: <isam.ben-soltane@inserm.fr>
-Description: Script allowing the user to generate several fcs files with a given amount of markers (parameters / dimensions), events, populations and sub-populations.
-    The populations can be generated either manually or automatically with a set of frequencies commands.
-    Control and mutant files can be generated. Variable parameters must be given to differentiate the control files. 
-    Mutant files are generated from control files. For each population, a reduction coefficient can be given to change its proportion in the selected mutant file.
+Maintainer: Isam Ben Soltane <isam.ben-soltane@inserm.fr>
+Description: Shiny app developped to use different clustering algorithms on FCS files. The files are enriched and can then be downloaded and used with the Analysis Tool.
 License: ?
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.1.0), shiny, shinyjs, ggcyto, flowCore, gtools,
-        Biobase
-NeedsCompilation: no
-Packaged: 2018-07-11 12:23:47 UTC; ibensoltane
- 

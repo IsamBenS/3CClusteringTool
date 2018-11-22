@@ -135,10 +135,10 @@ m.inv.compensate <- function(x, spillover = NULL)  #deCompensateFlowFrame
         }
     }
     
-    if(!is.null(spillover)){
+    if(!is.null(spillover))
+        {
         cols <- colnames(spillover)
         sel <- cols %in% colnames(x)
-        print(sel)
         if(!all(sel)) {
             stop(keyword(x)[["FILENAME"]], "\\nThe following parameters in the spillover matrix are not present in the flowFrame:\\n",
                  paste(cols[!sel], collapse=", "), call.=FALSE)
@@ -147,7 +147,9 @@ m.inv.compensate <- function(x, spillover = NULL)  #deCompensateFlowFrame
         e[, cols] <- e[, cols] %*% spillover
         exprs(x) = e
         return(x)
-    } else {
+    } 
+    else 
+    {
         return(x)
     }
 }

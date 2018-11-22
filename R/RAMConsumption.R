@@ -11,12 +11,14 @@ get.available.ram <- function()
     return(available.ram)
 }
 
-get.nmb.cores.max <- function(files.sizes, #Liste ou vecteur contenant les tailles des fichiers en bytes
-                              available.cores, #Nombre de coeursdisponibles
-                              x.cores = 0.5,  #Coefficient de réduction du nombres de coeurs(ex: x.cores=0.5 ==> la moitié des coeurs utilisables)
-                              x.ram = 0.5, #Coefficient de réduction de la RAM
-                              correction.coef = 1, #Erreur relative au calcul de la mémoire par coeur.
-                              separate.by.files = T) #Un fichier par coeur si T; Tous les coeurs utilisent tous les fichiers si F 
+get.nmb.cores.max <- function(
+    files.sizes, #Liste ou vecteur contenant les tailles des fichiers en bytes
+    available.cores, #Nombre de coeursdisponibles
+    x.cores = 0.5,  #Coefficient de réduction du nombres de coeurs(ex: x.cores=0.5 ==> la moitié des coeurs utilisables)
+    x.ram = 0.5, #Coefficient de réduction de la RAM
+    correction.coef = 1, #Erreur relative au calcul de la mémoire par coeur.
+    separate.by.files = T #Un fichier par coeur si T; Tous les coeurs utilisent tous les fichiers si F 
+) 
 #correction.coef = 1 ==> pas de changement
 #correction.coef = 1.2 ==> prévoir une utilisation 20% plus importante de ram par coeur
 {

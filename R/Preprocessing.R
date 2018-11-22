@@ -134,9 +134,10 @@ m.inv.compensate <- function(x, spillover = NULL)  #deCompensateFlowFrame
             spillover <- x@description[["SPILL"]]
         }
     }
-    
+    cols <- colnames(spillover)
+    sel <- cols %in% colnames(x)
     if(!is.null(spillover))
-        {
+    {
         cols <- colnames(spillover)
         sel <- cols %in% colnames(x)
         if(!all(sel)) {

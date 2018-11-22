@@ -414,8 +414,8 @@ server <- function(input, output, session)
                  files.sizes <- unlist(sapply(tmp.fcs.files, function(curr.f){return(object.size(curr.f))}))
                  nmb.cl <- get.nmb.cores.max(files.sizes, available.cores = current.project$nmb.cores, x.cores = 0.1,
                                              x.ram = 0.3, correction.coef = 1.05, separate.by.files = T)
-                 cl <- makeCluster(nmb.cl)
-                 registerDoSNOW(cl)
+                 # cl <- makeCluster(nmb.cl)
+                 # registerDoSNOW(cl)
                  
                  progress.fct <- function(i)
                  {
@@ -425,25 +425,30 @@ server <- function(input, output, session)
                  }
                  
                  in.time <- Sys.time()
-                 tmp.fcs.files <- foreach(f.id=1:length(tmp.fcs.files), 
-                                          .options.snow = list(progress=progress.fct), 
-                                          .packages = c("flowCore"),
-                                          .export = c("m.compensate","is.defined")) %dopar%
+                 # tmp.fcs.files <- foreach(f.id=1:length(tmp.fcs.files), 
+                 #                          .options.snow = list(progress=progress.fct), 
+                 #                          .packages = c("flowCore"),
+                 #                          .export = c("m.compensate","is.defined")) %dopar%
+                 # {
+                 tmp.fcs.files <- lapply(1:length(tmp.fcs.files), function(f.id)
                  {
                      fcs <- tmp.fcs.files[[f.id]]
                      if(is.defined(fcs))
                      {
                          if(tmp.input[[paste0("t_1_3_",f.id,"_cbox")]])
                          {
+                             print(colnames(fcs@exprs))
+                             print(colnames(fcs@description[["SPILL"]]))
+                             print("=============")
                              fcs <- m.compensate(fcs)
                          }
                      }
                      return(fcs)
-                 }
+                 })
                  print("EXEC TIME: ")
                  print(Sys.time()-in.time)
                  
-                 stopCluster(cl)
+                 # stopCluster(cl)
                  current.project$fcs.files <<- tmp.fcs.files
                  names(current.project$fcs.files) <<- tmp.fcs.files.names
                  
@@ -1035,7 +1040,7 @@ server <- function(input, output, session)
                         
                         temp.out <- foreach(run.id=L1.2, run.parameters.values=L1.1, fcs=L2.1, fcs.name=L2.2, f.id=L2.3,
                                             .options.snow = list(progress=progress.bar.fct),
-                                            .packages=c("flowCore","microbenchmark", "SPADECiphe", "cluster", "FlowSOM"),
+                                            .packages=c("flowCore","microbenchmark", "SPADECiphe","cluster","FlowSOM"),
                                             .export = c("is.defined","benchmark.method","benchmark.source.method","add.keyword.to.fcs","alg.id",
                                                         "curr.algo","enrich.FCS", "params","tmp.input","tmp.tool.wd","tmp.algo.params")) %dopar%
                         {
@@ -1202,8 +1207,8 @@ server <- function(input, output, session)
                  files.sizes <- unlist(sapply(tmp.fcs.files, function(curr.f){return(object.size(curr.f))}))
                  nmb.cl <- get.nmb.cores.max(files.sizes, available.cores = current.project$nmb.cores, x.cores = 0.1,
                                              x.ram = 0.3, correction.coef = 1.05, separate.by.files = T)
-                 cl <- makeCluster(nmb.cl)
-                 registerDoSNOW(cl)
+                 # cl <- makeCluster(nmb.cl)
+                 # registerDoSNOW(cl)
                  
                  progress.fct <- function(i)
                  {
@@ -1213,25 +1218,30 @@ server <- function(input, output, session)
                  }
                  
                  in.time <- Sys.time()
-                 tmp.fcs.files <- foreach(f.id=1:length(tmp.fcs.files), 
-                                          .options.snow = list(progress=progress.fct), 
-                                          .packages = c("flowCore"),
-                                          .export = c("m.inv.compensate","is.defined")) %dopar%
-                  {
+                 # tmp.fcs.files <- foreach(f.id=1:length(tmp.fcs.files), 
+                 #                          .options.snow = list(progress=progress.fct), 
+                 #                          .packages = c("flowCore"),
+                 #                          .export = c("m.inv.compensate","is.defined")) %dopar%
+                 #  {
+                 tmp.fcs.files <- lapply(1:length(tmp.fcs.files), function(f.id)
+                 {
                       fcs <- tmp.fcs.files[[f.id]]
                       if(is.defined(fcs))
                       {
                           if(tmp.input[[paste0("t_3_4_",f.id,"_cbox")]])
                           {
+                              print(colnames(fcs@exprs))
+                              print(colnames(fcs@description[["SPILL"]]))
+                              print("=============")
                               fcs <- m.inv.compensate(fcs)
                           }
                       }
                       return(fcs)
-                  }
+                  })
                  print("EXEC TIME: ")
                  print(Sys.time()-in.time)
                  
-                 stopCluster(cl)
+                 # stopCluster(cl)
                  current.project$fcs.files <<- tmp.fcs.files
                  names(current.project$fcs.files) <<- tmp.fcs.files.names
                  

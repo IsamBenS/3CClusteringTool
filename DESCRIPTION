@@ -1,6 +1,6 @@
-Package: ClusteringTool
+﻿Package: ClusteringTool
 Type: Package
-Title: Clustering Tool
+Title: ClusteringTool
 Version: 0.9.1
 Author: Isam Ben Soltane
 Maintainer: Isam Ben Soltane <isam.ben-soltane@inserm.fr>

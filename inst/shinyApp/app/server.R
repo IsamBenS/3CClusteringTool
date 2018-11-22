@@ -754,6 +754,10 @@ server <- function(input, output, session)
             {
                 clustering.algorithms$parameters <- list()
             }
+            if( is.null(clustering.algorithms$parameters.description) )
+            {
+                clustering.algorithms$parameters.description <- list()
+            }
 
             lapply(methods.files, function(f)
             {
@@ -761,6 +765,7 @@ server <- function(input, output, session)
 
                 clustering.algorithms$algorithms[[strsplit(f,".R", fixed = T)[[1]][1]]] <<- strsplit(f,".R", fixed = T)[[1]][1]
                 clustering.algorithms$parameters[[strsplit(f,".R", fixed = T)[[1]][1]]] <<- fct.parameters
+                clustering.algorithms$parameters.description[[strsplit(f,".R", fixed = T)[[1]][1]]] <<- fct.parameters.description
             })
         }
 
@@ -811,12 +816,18 @@ server <- function(input, output, session)
                                      (
                                          sliderInput(paste0("t_2_3_",k,"_",p),par.name,min = as.numeric(par[1]),max=as.numeric(par[3]),
                                                      step=as.numeric(par[2]),value=c(as.numeric(par[4]),as.numeric(par[4]))),
-                                         style="float:left;width:80%;"
+                                         style="float:left;width:65%;margin-bottom:11vh"
                                      ),
                                      div
                                      (
                                          textInput(paste0("t_2_3_",k,"_",p,"_step"), "Step", value=as.numeric(par[2])),
                                          style="float:left;width:10%;margin-top:2vh;margin-left:1.2vw"
+                                     ),
+                                     div
+                                     (
+                                         p(clustering.algorithms$parameters.description[[input$t_2_1_sel[[k]]]][[p]]),
+                                         style="float:left;width:20%;margin-top:2vh;margin-left:1.2vw;max-height:10vh;
+                                                overflow:auto;padding-top:2vh"
                                      )
                                  )
                         )
@@ -1024,7 +1035,7 @@ server <- function(input, output, session)
                         
                         temp.out <- foreach(run.id=L1.2, run.parameters.values=L1.1, fcs=L2.1, fcs.name=L2.2, f.id=L2.3,
                                             .options.snow = list(progress=progress.bar.fct),
-                                            .packages=c("flowCore","microbenchmark", "SPADECiphe","FlowSOM","cluster"),
+                                            .packages=c("flowCore","microbenchmark", "SPADECiphe"),
                                             .export = c("is.defined","benchmark.method","benchmark.source.method","add.keyword.to.fcs","alg.id",
                                                         "curr.algo","enrich.FCS", "params","tmp.input","tmp.tool.wd","tmp.algo.params")) %dopar%
                         {
@@ -1122,6 +1133,7 @@ server <- function(input, output, session)
                         current.project$fcs.files <<- fcs.files
                         for(f in 1:length(current.project$fcs.files))
                         {
+                            current.project$fcs.files[[i]]@description[["SPILL"]] <- current.project$fcs.files.backup[[i]]@description[["SPILL"]]
                             if(is.defined(current.project$fcs.files[[f]]))
                             {
                                 update.markers.list(current.section="t_1_3",f)

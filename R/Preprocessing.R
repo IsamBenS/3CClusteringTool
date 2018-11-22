@@ -26,7 +26,7 @@ m.compensate <- function(fcs.file)
   fcs <- fcs.file
   if(!is.null(fcs@description[["SPILL"]]))
   {
-      fcs <- compensate(fcs, fcs@description[["SPILL"]])
+      fcs <- flowCore::compensate(fcs, fcs@description[["SPILL"]])
   }
   
   return(fcs)
@@ -138,6 +138,7 @@ m.inv.compensate <- function(x, spillover = NULL)  #deCompensateFlowFrame
     if(!is.null(spillover)){
         cols <- colnames(spillover)
         sel <- cols %in% colnames(x)
+        print(sel)
         if(!all(sel)) {
             stop(keyword(x)[["FILENAME"]], "\\nThe following parameters in the spillover matrix are not present in the flowFrame:\\n",
                  paste(cols[!sel], collapse=", "), call.=FALSE)

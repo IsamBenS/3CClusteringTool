@@ -17,14 +17,14 @@ biocLite("ggcyto")
 biocLite("flowCore")
 biocLite("FlowSOM")
 biocLite("ncdfFlow")
-devtools::install_github("nolanlab/rclusterpp")
-devtools::install_github("isambens/spadeciphe")
 ```
   >You might have to launch a new R session
   
   2. Run the next commands:
 ```
 library("devtools")
+install_github("nolanlab/rclusterpp")
+install_github("isambens/spadeciphe")
 install_github("isambens/ClusteringTool")
 ```
 

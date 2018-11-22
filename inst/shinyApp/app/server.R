@@ -1133,7 +1133,10 @@ server <- function(input, output, session)
                         current.project$fcs.files <<- fcs.files
                         for(f in 1:length(current.project$fcs.files))
                         {
-                            current.project$fcs.files[[i]]@description[["SPILL"]] <- current.project$fcs.files.backup[[i]]@description[["SPILL"]]
+                            if(nrow(current.project$fcs.files[[i]]@exprs) == nrow(current.project$fcs.files.backup[[i]]@exprs))
+                            {
+                                current.project$fcs.files[[i]]@description[["SPILL"]] <- current.project$fcs.files.backup[[i]]@description[["SPILL"]]
+                            }
                             if(is.defined(current.project$fcs.files[[f]]))
                             {
                                 update.markers.list(current.section="t_1_3",f)

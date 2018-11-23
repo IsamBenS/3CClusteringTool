@@ -15,7 +15,7 @@ Finally, once your files are enriched and contain the necessary keywords, you ca
 # 3C - Clustering Tool
 Shiny app developped to use different clustering algorithms on FCS files. The files are enriched and can then be downloaded and used with the Analysis Tool.
 	 
->[User manual](https://raw.githubusercontent.com/isambens/3cclusteringtool/master/Manual_clusteringtool.pdf)
+>[User manual](https://raw.githubusercontent.com/isambens/3cclusteringtool/blob/master/Manual_clusteringtool.pdf)
 
 ## Requirements
   * software: R(Version 3.4.3 to 3.5), Rstudio(optional)

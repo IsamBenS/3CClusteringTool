@@ -1,5 +1,5 @@
 The 3C Analysis Toolkit is a set of shiny app designed to establish the efficiency of (over)clustering algorithms as well as optimizing their parameters by trying to maximize the F-score.
-![Clustering and overclustering](https://raw.githubusercontent.com/isambens/3cclusteringtool/blob/master/doc/img1.png)
+![Clustering and overclustering](https://github.com/isambens/3cclusteringtool/blob/master/doc/img1.png)
 The F-score is defined as the harmonic mean of precision and recall but can also be expressed as a function of True and False Positives and Negatives. Depending on the type of method -- clustering or overclustering -- the computation of the F-score might be modified:
 ![Clustering - F score computation](https://raw.githubusercontent.com/isambens/3cclusteringtool/blob/master/doc/img2.png?raw=true "F-score computation with clustering algorithms")
 Overclustering is trickier. We chose to group similar clusters into annotated groups.

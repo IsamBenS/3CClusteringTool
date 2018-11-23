@@ -15,13 +15,13 @@ Finally, once your files are enriched and contain the necessary keywords, you ca
 # 3C - Clustering Tool
 Shiny app developped to use different clustering algorithms on FCS files. The files are enriched and can then be downloaded and used with the Analysis Tool.
 	 
->[User manual](doc/Manual_clusteringtool.pdf)
+>[User manual](https://raw.githubusercontent.com/isambens/3canalysistool/Manual_clusteringtool.pdf)
 
-### Requirements
+## Requirements
   * software: R(Version 3.4.3 to 3.5), Rstudio(optional)
   * R packages: flowcore, microbenchmark, ncdfFlow, shiny, shinydashboard, shinyjs, doSNOW, cluster, parallel, ggcyto, SPADECiphe
   
-### Quick installation guide
+## Quick installation guide
 
   1. Run the following command in R/RStudio:
 ```
@@ -43,10 +43,87 @@ install_github("isambens/ClusteringTool")
 ```
 
   
-### Launching the shiny application
+## Launching the shiny application
 
   1. Run the following commands in R/RStudio:
 ```
 library("ClusteringTool")
 ClusteringTool.run()
+```  
+
+
+
+
+# 3C Analysis Tool
+Analysis tool used in a pipeline meant to establish the efficiency of clustering algorithms. Developped as a shiny app.
+
+>[User manual ](https://raw.githubusercontent.com/isambens/3canalysistool/Manual_analysistool.pdf)
+	
+## Requirements
+  * software: R(Version 3.4.3 to 3.5), Rstudio(optional)
+  * R packages: flowcore, microbenchmark, ncdfFlow, shiny, shinydashboard, shinyjs, DT, RColorBrewer, ggplot2, easyGgplot2
+  
+## Quick installation guide
+
+  1. Run the following command in R/RStudio:
+```
+install.packages("devtools")
+library(devtools)
+install_github("kassambara/easyGgplot2")
+install.packages(c("microbenchmark","DT", "ggplot2", "RColorBrewer", "shiny", "shinyjs", "shinydashboard"))
+source("https://bioconductor.org/biocLite.R")
+biocLite("flowCore")
+biocLite("ncdfFlow")
+```
+  >You may be asked to reload your environment, if so, accept.
+  
+  2. Run the next commands:
+```
+library("devtools")
+install_github("isambens/AnalysisTool")
+```
+
+  
+## Launching the shiny application
+
+  1. Run the following commands in R/RStudio:
+```
+library("AnalysisTool")
+AnalysisTool.run()
+```  
+
+
+
+
+# 3C Keywords Registor
+Shiny app used to add keywords to an fcs enriched without Clustering Tool. Prior to Analysis Tool.
+
+	
+## Requirements
+  * software: R(Version 3.4.3 to 3.5), Rstudio(optional)
+  * R packages: flowcore, shiny, shinydashboard, shinyjs
+  
+## Quick installation guide
+
+  1. Run the following command in R/RStudio:
+```
+install.packages(c("microbenchmark, "shiny", "shinyjs", "shinydashboard"))
+source("https://bioconductor.org/biocLite.R")
+biocLite("flowCore")
+```
+  >You may be asked to reload your environment, if so, accept.
+  
+  2. Run the next commands:
+```
+library("devtools")
+install_github("isambens/KeywordsRegistor")
+```
+
+  
+## Launching the shiny application
+
+  1. Run the following commands in R/RStudio:
+```
+library("KeywordsRegistor)
+KeywordsRegistor.run()
 ```  

@@ -1,21 +1,21 @@
 The 3C Analysis Toolkit is a set of shiny app designed to establish the efficiency of (over)clustering algorithms as well as optimizing their parameters by trying to maximize the F-score.
 ![Clustering and overclustering](https://github.com/isambens/3cclusteringtool/blob/master/doc/img1.png)
 The F-score is defined as the harmonic mean of precision and recall but can also be expressed as a function of True and False Positives and Negatives. Depending on the type of method -- clustering or overclustering -- the computation of the F-score might be modified:
-![Clustering - F score computation](https://raw.githubusercontent.com/isambens/3cclusteringtool/blob/master/doc/img2.png?raw=true "F-score computation with clustering algorithms")
+![Clustering - F score computation](https://github.com/isambens/3cclusteringtool/blob/master/doc/img2.png?raw=true "F-score computation with clustering algorithms")
 Overclustering is trickier. We chose to group similar clusters into annotated groups.
-![Overclustering - F score computation](https://raw.githubusercontent.com/isambens/3cclusteringtool/blob/master/doc/img3.png?raw=true "F-score computation with overclustering algorithms")
+![Overclustering - F score computation](https://github.com/isambens/3cclusteringtool/blob/master/doc/img3.png?raw=true "F-score computation with overclustering algorithms")
 
 The 3 tools composing this toolkit are independant and can be used at different steps of the analysis. If you wish to create enriched files -- clustering your files and adding columns giving the cluster for each event -- use the "[3C Clustering Tool](http://github.com/isambens/3cclusteringtool))".
 If your files were enriched/clustered using an algorithm not supported by 3C Clustering Tool, use "[3C Keywords Registor](http://github.com/isambens/3ckeywordsregistor))" to add the keywords enabling the analysis of the different algorithms used.
 Finally, once your files are enriched and contain the necessary keywords, you can use "[3C Analysis Tool](http://github.com/isambens/3canalysistool))" visualize the different parameters causing the F-score to vary, thus exposing the issues which can be encountered while running certain algorithms.
-![3C Analysis Pipeline](https://raw.githubusercontent.com/isambens/3cclusteringtool/blob/master/doc//img4.png "3C Analysis Pipeline")
+![3C Analysis Pipeline](https://github.com/isambens/3cclusteringtool/blob/master/doc//img4.png "3C Analysis Pipeline")
 
 
 
 # 3C - Clustering Tool
 Shiny app developped to use different clustering algorithms on FCS files. The files are enriched and can then be downloaded and used with the Analysis Tool.
 	 
->[User manual](https://raw.githubusercontent.com/isambens/3cclusteringtool/blob/master/doc/Manual_clusteringtool.pdf)
+>[User manual](https://github.com/isambens/3cclusteringtool/blob/master/doc/Manual_clusteringtool.pdf)
 
 ## Requirements
   * software: R(Version 3.4.3 to 3.5), Rstudio(optional)
@@ -57,7 +57,7 @@ ClusteringTool.run()
 # 3C Analysis Tool
 Analysis tool used in a pipeline meant to establish the efficiency of clustering algorithms. Developped as a shiny app.
 
->[User manual ](https://raw.githubusercontent.com/isambens/3canalysistool/blob/master/doc//Manual_analysistool.pdf)
+>[User manual ](https://github.com/isambens/3canalysistool/blob/master/doc/Manual_analysistool.pdf)
 	
 ## Requirements
   * software: R(Version 3.4.3 to 3.5), Rstudio(optional)

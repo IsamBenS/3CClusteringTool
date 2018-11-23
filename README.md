@@ -6,8 +6,8 @@ Overclustering is trickier. We chose to group similar clusters into annotated gr
 ![Overclustering - F score computation](doc/img3.png?raw=true "F-score computation with overclustering algorithms").
 
 The 3 tools composing this toolkit are independant and can be used at different steps of the analysis. If you wish to create enriched files -- clustering your files and adding columns giving the cluster for each event -- use the "[3C Clustering Tool](http://github.com/isambens/3cclusteringtool))".
-If your files were enriched/clustered using an algorithm not supported by 3C Clustering Tool, use "[3C Keywords Registor](http://github.com/isambens/3keywordsregistor))" to add the keywords enabling the analysis of the different algorithms used.
-Finally, once your files are enriched and contain the necessary keywords, you can visualize the different parameters causing the F-score to vary, thus exposing the issues which can be encountered while running certain algorithms.
+If your files were enriched/clustered using an algorithm not supported by 3C Clustering Tool, use "[3C Keywords Registor](http://github.com/isambens/3ckeywordsregistor))" to add the keywords enabling the analysis of the different algorithms used.
+Finally, once your files are enriched and contain the necessary keywords, you can use "[3C Analysis Tool](http://github.com/isambens/3canalysistool))" visualize the different parameters causing the F-score to vary, thus exposing the issues which can be encountered while running certain algorithms.
 ![3C Analysis Pipeline](doc/img4.png?raw=true "3C Analysis Pipeline").
 
 

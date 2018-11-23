@@ -1,7 +1,3 @@
-library(shiny)
-library(shinydashboard)
-library(shinyjs)
-
 ui <- dashboardPage(
     
     dashboardHeader
@@ -35,47 +31,24 @@ ui <- dashboardPage(
                     id="t_1_fr",
                     box
 					(
-						id="t_1_1",width=2,height = "27vh",
-						actionButton("t_1_1_add", "Add files",style="width:90%;margin-left:4.8%"),
-					    actionButton("t_1_1_rm", "Remove Selection",style="width:90%;margin-left:4.8%"),
-					    actionButton("t_1_1_compensate", "Compensate Selection",style="width:90%;margin-left:4.8%"),
+						id="t_1_1",width=2,height = "32vh",style="height:32vh;overflow:auto",
+					    actionButton("t_1_1_add", "Add files",style="width:90%;margin-left:4.8%"),
 					    actionButton("t_1_1_select_all", "Select All",style="width:90%;margin-left:4.8%;margin-top:5.8vh"),
-					    actionButton("t_1_1_deselect_all", "Deselect All",style="width:90%;margin-left:4.8%")
+					    actionButton("t_1_1_deselect_all", "Deselect All",style="width:90%;margin-left:4.8%"),
+					    actionButton("t_1_1_rm", "Remove Selection",style="width:90%;margin-left:4.8%")
 					),
                     box
                     (
-                        id="t_1_2",width=3,height = "27vh",
+                        id="t_1_2",width=3,height = "32vh",style="height:32vh;overflow:auto",
+                        actionButton("t_1_1_compensate", "Compensate Selection",style="width:90%;margin-left:4.8%;margin-bottom:1.5vh;"),
                         selectInput("t_1_2_select_transform", "Select Transformation", choices=list("logicle"=1, "arcsinh"=2), selected = 1),
                         box(id="t_1_2_sel_box",width=12,style="overflow:auto;height:9vh"),
                         actionButton("t_1_2_transform", "Transform Selection",style="width:90%;margin-left:4.8%")
                     ),
-                    hidden(fluidRow
-                    (
-                        id="t_1_4", width=6,
-                        box
-                        (
-                            style="height:25vh;overflow:auto",
-                            tableOutput("t_1_4_fileInfo")
-                        )
-                    )),
-                    fluidRow
-                    (
-                        id="t_1_3"
-                    )
-                )
-            ),
-			
-            tabItem
-            (
-                tabName="t_2",
-                h2("Clustering"),
-                shinyjs::hidden(fluidRow
-                (
-                    id="t_2_fr",style="padding:2%;width:90%;border:solid gray;border-width:2px 0px 0px 1px",
                     box
                     (
-                        height = "22vh", width=3, id="t_2_2", style="overflow:auto;max-height:20vh",
-                        checkboxInput("t_2_1_dwnsmpl", "Downsample all", value = T),
+                        height = "32vh", width=2, id="t_2_2", style="overflow:auto;max-height:20vh;margin-top:5vh",
+                        checkboxInput("t_2_1_dwnsmpl", "Downsample all the files", value = T),
                         div
                         (
                             div
@@ -93,15 +66,34 @@ ui <- dashboardPage(
                         
                     ),
                     box
+                    (
+                        width=4, style="height:32vh;overflow:auto",
+                        tableOutput("t_1_4_fileInfo")
+                    ),
+                    fluidRow
+                    (
+                        id="t_1_3"
+                    )
+                )
+            ),
+			
+            tabItem
+            (
+                tabName="t_2",
+                h2("Clustering"),
+                shinyjs::hidden(fluidRow
+                (
+                    id="t_2_fr",style="padding:2%;width:90%;border:solid gray;border-width:2px 0px 0px 1px",
+                    box
 					(
-						height = "22vh", width=3, id="t_2_1", style="overflow:auto;max-height:20vh",
+						height = "22vh", width=4, id="t_2_1", style="overflow:auto;max-height:20vh",
 						selectInput("t_2_1_sel", "Select Algortihms", choices = NULL, multiple = T),
 					    actionButton("t_2_1_run", "Run Algorithms", width="auto", style="margin-top:3%;margin-left:35%"),
 					    div(id="t_2_1_error")
 					),
                     hidden(fluidRow
                     (
-                        id="t_2_4", width=6,
+                        id="t_2_4", width=8,
                         box
                         (
                             style="height:22vh;overflow:auto",
@@ -124,22 +116,22 @@ ui <- dashboardPage(
                     id="t_3_fr",
                     box
                     (
-                        id="t_3_1",width=2,height = "27vh",
+                        id="t_3_1",width=3,height = "32vh",style="height:32vh;overflow:auto",
                         selectInput("t_3_1_select_transform", "Select Transformation", choices=list("logicle"=1, "arcsinh"=2), selected = 1),
                         box(id="t_3_1_sel_box",width=12,style="overflow:auto;height:9vh"),
-                        actionButton("t_3_1_itransform", "Detransform Selection",style="width:90%;margin-left:4.8%")
+                        actionButton("t_3_1_itransform", "Detransform Selection",style="width:80%;margin-left:9.8%"),
+                        actionButton("t_3_2_icompensate", "Decompensate Selection",style="width:80%;margin-left:9.8%;margin-top:1.2vh")
                     ),
                     box
                     (
-                        id="t_3_2",width=3,height = "27vh",
-                        actionButton("t_3_2_icompensate", "Decompensate Selection",style="width:80%;margin-left:9.8%;margin-top:1vh"),
-                        actionButton("t_3_2_select_all", "Select All", style="width:80%;margin-left:9.8%;margin-top:5vh"),
+                        id="t_3_2",width=2,height = "32vh",style="height:32vh;overflow:auto;margin-top:20%",
+                        actionButton("t_3_2_select_all", "Select All", style="width:80%;margin-left:9.8%;"),
                         actionButton("t_3_2_deselect_all", "Deselect All", style="width:80%;margin-left:9.8%"),
-                        downloadButton("t_3_3_dl", "Download Enriched Files", style="width:80%;margin-left:9.8%")
+                        downloadButton("t_3_3_dl", "Download Enriched Files", style="width:80%;margin-left:9.8%;margin-top:5vh")
                     ),
                     hidden(fluidRow
                     (
-                       id="t_3_4", width=6,
+                       id="t_3_4", width=7,
                        box
                        (
                            style="height:25vh;overflow:auto",

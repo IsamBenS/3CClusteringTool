@@ -113,23 +113,28 @@ server <- function(input, output, session)
                              "beforeEnd",
                              fluidRow
                              (
-                                 style="padding-left:1.7vw;padding-right:0.2vw",id=paste0("t_1_3_",f,"_fr"),
+                                 style="padding-left:1.7vw;padding-right:0.2vw;margin-right:7vw",
+                                 id=paste0("t_1_3_",f,"_fr"),
                                  box
                                  (
-                                     title=names(current.project$fcs.files)[f],collapsible=TRUE,width=8,collapsed=F,
-                                     id=paste0("t_1_3_",f), 
-                                     selectInput(paste0("t_1_3_",f,"_mark_sel"),label = "Markers to use",
-                                                 choices=markers.sel,
-                                                 selected=markers.sel,
-                                                 multiple = T),
-                                     actionButton(paste0("t_1_3_",f,"_mark_all"), "Select all"),
-                                     actionButton(paste0("t_1_3_",f,"_unmark_all"), "Deselect all")
-                                 ),
-                                 box
-                                 (
-                                     width=3,height="12vh",
-                                     textInput(paste0("t_1_3_",f,"_dwnsmpl"), "Downsample (nmb events)", value=nrow(fcs@exprs)),
-                                     checkboxInput(paste0("t_1_3_",f,"_cbox"), "Select", value = F)
+                                     width=12,
+                                     box
+                                     (
+                                         width=3,height="12vh",
+                                         textInput(paste0("t_1_3_",f,"_dwnsmpl"), "Downsample (nmb events)", value=nrow(fcs@exprs)),
+                                         checkboxInput(paste0("t_1_3_",f,"_cbox"), "Select", value = F)
+                                     ),
+                                     box
+                                     (
+                                         title=names(current.project$fcs.files)[f],collapsible=TRUE,width=8,collapsed=F,
+                                         id=paste0("t_1_3_",f), 
+                                         selectInput(paste0("t_1_3_",f,"_mark_sel"),label = "Markers to use",
+                                                     choices=markers.sel,
+                                                     selected=markers.sel,
+                                                     multiple = T),
+                                         actionButton(paste0("t_1_3_",f,"_mark_all"), "Select all"),
+                                         actionButton(paste0("t_1_3_",f,"_unmark_all"), "Deselect all")
+                                     )
                                  )
                              )
                     )
@@ -140,19 +145,23 @@ server <- function(input, output, session)
                                  style="margin-left:1.7vw;padding-right:0.2vw",id=paste0("t_3_4_",f,"_fr"),
                                  box
                                  (
-                                     title=names(current.project$fcs.files)[f],collapsible=TRUE,width=10,collapsed=F,
-                                     id=paste0("t_3_4_",f), 
-                                     selectInput(paste0("t_3_4_",f,"_mark_sel"),label = "Markers to use",
-                                                         choices=markers.sel,
-                                                         selected=markers.sel,
-                                                         multiple = T),
-                                     actionButton(paste0("t_3_4_",f,"_mark_all"), "Select all"),
-                                     actionButton(paste0("t_3_4_",f,"_unmark_all"), "Deselect all")
-                                 ),
-                                 box
-                                 (
-                                     width=1,height="12vh", style="padding-top:2vh",
-                                     checkboxInput(paste0("t_3_4_",f,"_cbox"), "Select", value = F)
+                                     width=12,
+                                     box
+                                     (
+                                         width=1,height="12vh", style="padding-top:2vh",
+                                         checkboxInput(paste0("t_3_4_",f,"_cbox"), "Select", value = F)
+                                     ),
+                                     box
+                                     (
+                                         title=names(current.project$fcs.files)[f],collapsible=TRUE,width=10,collapsed=F,
+                                         id=paste0("t_3_4_",f), 
+                                         selectInput(paste0("t_3_4_",f,"_mark_sel"),label = "Markers to use",
+                                                             choices=markers.sel,
+                                                             selected=markers.sel,
+                                                             multiple = T),
+                                         actionButton(paste0("t_3_4_",f,"_mark_all"), "Select all"),
+                                         actionButton(paste0("t_3_4_",f,"_unmark_all"), "Deselect all")
+                                     )
                                  )
                              )
                     )
@@ -437,6 +446,9 @@ server <- function(input, output, session)
                      {
                          if(tmp.input[[paste0("t_1_3_",f.id,"_cbox")]])
                          {
+                             print(colnames(fcs@exprs))
+                             print(fcs@description[["SPILL"]])
+                             print("=============")
                              fcs <- m.compensate(fcs)
                          }
                      }
@@ -818,7 +830,7 @@ server <- function(input, output, session)
                                      (
                                          sliderInput(paste0("t_2_3_",k,"_",p),par.name,min = as.numeric(par[1]),max=as.numeric(par[3]),
                                                      step=as.numeric(par[2]),value=c(as.numeric(par[4]),as.numeric(par[4]))),
-                                         style="float:left;width:65%;margin-bottom:11vh"
+                                         style="float:left;width:65%;margin-bottom:2.1vh"
                                      ),
                                      div
                                      (
@@ -882,6 +894,7 @@ server <- function(input, output, session)
 
     observeEvent(input$t_2_1_run,#RUNS ANALYSES
     {
+        shinyjs::disable("t_2_1_run")
         if(length(current.project$fcs.files)>0)
         {
             run.notif <- showNotification("RUNNING CLUSTERINGS - please wait", duration = NULL)
@@ -1135,10 +1148,7 @@ server <- function(input, output, session)
                         current.project$fcs.files <<- fcs.files
                         for(f in 1:length(current.project$fcs.files))
                         {
-                            if(nrow(current.project$fcs.files[[i]]@exprs) == nrow(current.project$fcs.files.backup[[i]]@exprs))
-                            {
-                                current.project$fcs.files[[i]]@description[["SPILL"]] <- current.project$fcs.files.backup[[i]]@description[["SPILL"]]
-                            }
+                            current.project$fcs.files[[i]]@description[["SPILL"]] <- current.project$fcs.files.backup[[i]]@description[["SPILL"]]
                             if(is.defined(current.project$fcs.files[[f]]))
                             {
                                 update.markers.list(current.section="t_1_3",f)
@@ -1164,6 +1174,7 @@ server <- function(input, output, session)
             }
             removeNotification(run.notif)
         }
+        shinyjs::delay(ms=500,expr=enable("t_2_1_run"))
     })
     
     
@@ -1227,6 +1238,9 @@ server <- function(input, output, session)
                       {
                           if(tmp.input[[paste0("t_3_4_",f.id,"_cbox")]])
                           {
+                              print(colnames(fcs@exprs))
+                              print(fcs@description[["SPILL"]])
+                              print("=============")
                               fcs <- m.inv.compensate(fcs)
                           }
                       }

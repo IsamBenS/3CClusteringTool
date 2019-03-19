@@ -6,7 +6,7 @@ fct.parameters.description <- list("Number of clusters.",
 BRP_BM.clara.execute <- function(fcs.file, params = list(50,5,80,0), markers_col)
 {
     k <- min(nrow(fcs.file@exprs), as.numeric(params[[1]]))
-    samp.size <- min(max(40+2*as.numeric(params[[1]]), as.numeric(params[[3]])), nrow(fcs.file@exprs))
+    samp.size <- min(max(1+as.numeric(params[[1]]), as.numeric(params[[3]])), nrow(fcs.file@exprs))
     
     fcs.out.clara <- clara(fcs.file@exprs[,as.numeric(markers_col)], 
                            k = k,
